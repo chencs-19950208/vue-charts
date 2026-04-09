@@ -19,11 +19,10 @@ export default {
   background: #fff;
   border-radius: 8px;
   padding: 20px;
-  margin-bottom: 16px;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.05);
 }
 .panel-title {
-  font-size: 15px;
+  font-size: 16px;
   color: #333;
   font-weight: bold;
   margin-bottom: 20px;
@@ -37,7 +36,7 @@ export default {
 .scale-box {
   background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
   border-radius: 8px;
-  height: 90px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: baseline;
@@ -45,12 +44,12 @@ export default {
   box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
 }
 .number {
-  font-size: 42px;
+  font-size: 48px;
   font-weight: bold;
-  line-height: 90px;
+  line-height: 100px;
 }
 .unit {
-  font-size: 18px;
+  font-size: 20px;
   margin-left: 6px;
 }
 </style>

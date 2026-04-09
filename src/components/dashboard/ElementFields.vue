@@ -87,11 +87,14 @@ export default {
   background: #fff;
   border-radius: 8px;
   padding: 20px;
-  margin-bottom: 16px;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
 }
 .panel-title {
-  font-size: 15px;
+  font-size: 16px;
   color: #333;
   font-weight: bold;
   margin-bottom: 20px;
@@ -103,7 +106,8 @@ export default {
   color: #409EFF;
 }
 .chart-container {
-  height: 220px;
+  flex: 1;
   width: 100%;
+  min-height: 250px;
 }
 </style>

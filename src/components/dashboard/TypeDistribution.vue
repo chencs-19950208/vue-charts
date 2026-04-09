@@ -36,14 +36,14 @@ export default {
 .panel {
   background: #fff;
   border-radius: 8px;
-  padding: 20px;
+  padding: 24px 20px;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.05);
 }
 .panel-title {
-  font-size: 15px;
+  font-size: 16px;
   color: #333;
   font-weight: bold;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -54,33 +54,33 @@ export default {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px 16px;
+  gap: 24px 16px;
 }
 .grid-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 .icon-box {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 20px;
+  font-size: 24px;
 }
 .info {
   display: flex;
   flex-direction: column;
 }
 .info .name {
-  font-size: 13px;
+  font-size: 14px;
   color: #666;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 .info .value {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   color: #333;
 }

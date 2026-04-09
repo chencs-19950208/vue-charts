@@ -79,7 +79,7 @@ export default {
   background: #fff;
   border-radius: 8px;
   padding: 20px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.05);
 }
 .top-cards {
@@ -91,14 +91,19 @@ export default {
   display: flex;
   gap: 20px;
   height: calc(100vh - 180px);
-  min-height: 700px;
+  min-height: 760px;
 }
 .left-column {
-  width: 360px;
+  width: 420px;
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+.left-column > :nth-child(2) {
+  flex: 1;
 }
 .right-column {
   flex: 1;
+  min-width: 0;
 }
 </style>
