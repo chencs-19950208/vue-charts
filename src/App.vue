@@ -1,6 +1,13 @@
 <template>
   <div id="app">
-    <div class="chart-wrapper">
+    <div class="nav-tabs">
+      <el-radio-group v-model="currentChart" size="small">
+        <el-radio-button label="pie">环形图</el-radio-button>
+        <el-radio-button label="bar">3D柱状图</el-radio-button>
+      </el-radio-group>
+    </div>
+    
+    <div v-show="currentChart === 'pie'" class="chart-wrapper">
       <div ref="chart" class="chart-container"></div>
       <div class="legend-container">
         <el-row :gutter="20">
@@ -15,16 +22,23 @@
         </el-row>
       </div>
     </div>
+
+    <BarChart3D v-if="currentChart === 'bar'" />
   </div>
 </template>
 
 <script>
 import * as echarts from 'echarts';
+import BarChart3D from './components/BarChart3D.vue';
 
 export default {
   name: 'App',
+  components: {
+    BarChart3D
+  },
   data() {
     return {
+      currentChart: 'bar',
       chartInstance: null,
       chartData: [
         { name: '机构1', value: 59, percent: 10, color: '#2E64FF' },
@@ -186,7 +200,12 @@ body {
 #app {
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-tabs {
+  margin-bottom: 30px;
 }
 
 .chart-wrapper {
