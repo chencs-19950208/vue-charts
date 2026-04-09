@@ -2,6 +2,7 @@
   <div id="app">
     <div class="nav-tabs">
       <el-menu :default-active="$route.path" mode="horizontal" router background-color="#0a1931" text-color="#fff" active-text-color="#409EFF">
+        <el-menu-item index="/dashboard">综合大屏</el-menu-item>
         <el-menu-item index="/pie">环形图</el-menu-item>
         <el-menu-item index="/bar">3D柱状图</el-menu-item>
       </el-menu>
@@ -26,23 +27,23 @@ body {
   background: #0a1931;
   color: #fff;
   font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-  min-height: 100vh;
 }
 
 #app {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  min-height: 100vh;
 }
 
 .nav-tabs {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
   background-color: #0a1931;
   border-bottom: 1px solid #1e3a8a;
+  flex-shrink: 0;
+  z-index: 10;
 }
 
 .el-menu {
@@ -50,11 +51,11 @@ body {
 }
 
 .view-container {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
+  position: relative;
 }
 </style>

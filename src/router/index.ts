@@ -2,13 +2,19 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import PieChartView from '../views/PieChartView.vue';
 import BarChart3D from '../components/BarChart3D.vue';
+import DashboardView from '../views/DashboardView.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    redirect: '/pie'
+    redirect: '/dashboard'
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: DashboardView
   },
   {
     path: '/pie',
