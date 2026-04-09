@@ -27,14 +27,59 @@ export default {
   mounted() {
     this.initChart();
     window.addEventListener('resize', this.handleResize);
+    this.$refs.chart.addEventListener('wheel', this.handleWheel, { passive: false });
   },
   beforeDestroy() {
     if (this.chartInstance) {
       this.chartInstance.dispose();
     }
     window.removeEventListener('resize', this.handleResize);
+    if (this.$refs.chart) {
+      this.$refs.chart.removeEventListener('wheel', this.handleWheel);
+    }
   },
   methods: {
+    handleWheel(e) {
+      if (!this.chartInstance) return;
+      
+      const delta = e.deltaY || e.deltaX;
+      if (Math.abs(delta) < 5) return; // 忽略微小滚动
+      
+      e.preventDefault(); // 阻止页面默认滚动
+      
+      const option = this.chartInstance.getOption();
+      if (!option || !option.dataZoom || !option.dataZoom[0]) return;
+      
+      let start = option.dataZoom[0].startValue;
+      let end = option.dataZoom[0].endValue;
+      
+      // 根据滚动方向决定步长
+      const step = delta > 0 ? 1 : -1;
+      
+      let newStart = start + step;
+      let newEnd = end + step;
+      
+      const maxIndex = this.countries.length - 1;
+      
+      // 边界处理
+      if (newStart < 0) {
+        newStart = 0;
+        newEnd = 2;
+      }
+      if (newEnd > maxIndex) {
+        newEnd = maxIndex;
+        newStart = maxIndex - 2;
+      }
+      
+      // 如果有变化则触发更新
+      if (newStart !== start) {
+        this.chartInstance.dispatchAction({
+          type: 'dataZoom',
+          startValue: newStart,
+          endValue: newEnd
+        });
+      }
+    },
     handleResize() {
       if (this.chartInstance) {
         this.chartInstance.resize();
@@ -52,6 +97,9 @@ export default {
           }
         },
         grid: {
+          show: true, // 开启 grid 以捕获空白区域的鼠标拖拽事件
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
           top: '15%',
           left: '5%',
           right: '5%',
@@ -105,10 +153,18 @@ export default {
             xAxisIndex: 0,
             zoomLock: true, // 锁定缩放，保持刻度固定
             zoomOnMouseWheel: false, // 禁用滚轮缩放
-            moveOnMouseWheel: true, // 启用滚轮平移（滚动）
+            moveOnMouseWheel: false, // 禁用原生滚轮平移，使用我们自定义的 handleWheel
             moveOnMouseMove: true, // 启用鼠标拖拽平移
+            preventDefaultMouseMove: false,
             startValue: 0,
             endValue: 2 // 固定显示 3 个国家，与原图密度保持一致
+          },
+          {
+            type: 'slider',
+            show: false, // 隐藏滚动条，但保留其逻辑功能辅助 inside
+            xAxisIndex: 0,
+            startValue: 0,
+            endValue: 2
           }
         ],
         series: [
@@ -209,5 +265,10 @@ export default {
 .chart-container {
   width: 100%;
   height: 400px;
+  cursor: grab;
+}
+
+.chart-container:active {
+  cursor: grabbing;
 }
 </style>
