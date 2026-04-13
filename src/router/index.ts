@@ -3,13 +3,19 @@ import VueRouter from 'vue-router';
 import PieChartView from '../views/PieChartView.vue';
 import BarChart3D from '../components/BarChart3D.vue';
 import DashboardView from '../views/DashboardView.vue';
+import CollisionTaskView from '../views/CollisionTaskView.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    redirect: '/dashboard'
+    redirect: '/collision'
+  },
+  {
+    path: '/collision',
+    name: 'CollisionTask',
+    component: CollisionTaskView
   },
   {
     path: '/dashboard',

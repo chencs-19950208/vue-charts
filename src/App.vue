@@ -2,6 +2,7 @@
   <div id="app">
     <div class="nav-tabs">
       <el-menu :default-active="$route.path" mode="horizontal" router background-color="#0a1931" text-color="#fff" active-text-color="#409EFF">
+        <el-menu-item index="/collision">碰撞任务</el-menu-item>
         <el-menu-item index="/dashboard">综合大屏</el-menu-item>
         <el-menu-item index="/pie">环形图</el-menu-item>
         <el-menu-item index="/bar">3D柱状图</el-menu-item>
